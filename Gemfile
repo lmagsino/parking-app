@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Adds support for creating state machines for attributes on any Ruby class
+gem 'state_machines'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
