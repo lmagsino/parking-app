@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Adds support for creating state machines for attributes on any Ruby class
 gem 'state_machines'
 
+gem 'jquery-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
