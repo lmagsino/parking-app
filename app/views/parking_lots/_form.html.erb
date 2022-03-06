@@ -1,0 +1,52 @@
+<%= form_with(model: parking_lot) do |form| %>
+  <% if parking_lot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(parking_lot.errors.count, "error") %> prohibited this parking_lot from being saved:</h2>
+
+      <ul>
+        <% parking_lot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = 'field form-group'>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :entry_point, style: "display: block" %>
+    <%= form.number_field :entry_point, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :flat_rate, style: "display: block" %>
+    <%= form.number_field :flat_rate, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :small_parking_rate, style: "display: block" %>
+    <%= form.number_field :small_parking_rate, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :medium_parking_rate, style: "display: block" %>
+    <%= form.number_field :medium_parking_rate, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.label :large_parking_rate, style: "display: block" %>
+    <%= form.number_field :large_parking_rate, class: 'form-control' %>
+  </div>
+
+  <div class = 'field form-group actions'>
+    <%= form.submit class: 'btn btn-secondary' %>
+  </div>
+<% end %>

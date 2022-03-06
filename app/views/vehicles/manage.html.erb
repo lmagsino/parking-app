@@ -1,0 +1,52 @@
+<div class = 'row form-group'>
+  <div class = 'col-lg-2'>
+    Entry Point:
+  </div>
+
+  <div class = 'col-lg-4'>
+    <%= select_tag :entry_point, options_for_select(@entry_points), :class => 'form-control' %>
+  </div>
+</div>
+
+<div class = 'row form-group'>
+  <div class = 'col-lg-2'>
+    Plate Number:
+  </div>
+
+  <div class = 'col-lg-4'>
+    <%= text_field_tag :plate_number, '', :placeholder => 'Plate Number', :class => 'form-control' %>
+  </div>
+</div>
+
+<div class = 'row form-group'>
+  <div class = 'col-lg-2'>
+    Current Time:
+  </div>
+
+  <div class = 'col-lg-4'>
+    <%= check_box_tag :current_time, '', :disabled => false, :class => 'form-control' %>
+  </div>
+</div>
+
+<div class = 'row form-group'>
+  <div class = 'col-lg-2'>
+    Time:
+  </div>
+
+  <div class = 'col-lg-4'>
+    <%= time_select :time, '', :disabled => false, ampm: true, :class => 'form-control' %>
+  </div>
+
+  # <p data-controller="hello"></p>
+  <p data-controller="hello" data-action="click->hello#handleClick">sdf</p>
+
+</div>
+
+
+
+
+<div class = 'field form-group'>
+  <%= button_tag 'Park', :class => 'btn btn-secondary js-btn-park' %>
+
+  <%= button_tag 'Unpark', class: 'btn btn-secondary' %>
+</div>

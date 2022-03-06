@@ -1,0 +1,31 @@
+<%= form_with(model: parking_slot) do |form| %>
+  <% if parking_slot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(parking_slot.errors.count, "error") %> prohibited this parking_slot from being saved:</h2>
+
+      <ul>
+        <% parking_slot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = 'field form-group'>
+    <%= form.collection_select :parking_lot_id, ParkingLot.all, :id, :name, :class => 'form-control' %>
+  </div>
+
+  <div class = 'field form-group'>
+    <%= form.select :parking_type, options_for_select(ParkingSlot.parking_types.map {|key, val| [key.humanize.capitalize, key]}) %>
+  </div>
+
+
+  <div class = 'field form-group'>
+    <%= text_field_tag :locations, '', :class => 'form-control' %>
+  </div>
+
+  <div class = 'field form-group actions'>
+    <%= submit_tag 'Submit', class: 'btn btn-secondary' %>
+  </div>
+
+<% end %>

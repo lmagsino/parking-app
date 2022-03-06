@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Parking lot</h1>
+
+<table class='table table-striped'>
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Entry Point</th>
+      <th scope="col">Flat Rate</th>
+      <th scope="col">Small Parking Rate</th>
+      <th scope="col">Medium Parking Rate</th>
+      <th scope="col">Large Parking Rate</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parking_lots.each do |parking_lot| %>
+      <tr>
+        <td> <%= parking_lot.name %> </td>
+        <td> <%= parking_lot.address %> </td>
+        <td> <%= parking_lot.entry_point %> </td>
+        <td> <%= parking_lot.flat_rate %> </td>
+        <td> <%= parking_lot.small_parking_rate %> </td>
+        <td> <%= parking_lot.medium_parking_rate %> </td>
+        <td> <%= parking_lot.large_parking_rate %> </td>
+        <td> <%= link_to 'Show details', parking_lot %> </td>
+        <td> <%= link_to 'Edit details', edit_parking_lot_path(parking_lot) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New parking lot", new_parking_lot_path, class: 'btn btn-secondary' %>

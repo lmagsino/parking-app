@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="jumbotron">
+  <h1 class="display-4"><%= @parking_lot.name %></h1>
+  <p class="lead"><%= @parking_lot.address %></p>
+  <%= link_to "Edit this parking lot", edit_parking_lot_path(@parking_lot), class: 'btn btn-secondary' %>
+  <%= link_to "Back to parking lots", parking_lots_path, class: 'btn btn-secondary' %>
+</div>
+
+<%= render @parking_lot %>
+
+<div>
+
+
+</div>
