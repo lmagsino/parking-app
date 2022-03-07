@@ -25,6 +25,10 @@ class ParkingTransaction < ApplicationRecord
     self.parking_lot.flat_rate
   end
 
+  def flat_rate
+    self.parking_lot.whole_day_rate
+  end
+
   def continuous_rate
     case self.parking_slot.parking_type.to_sym
     when :small
