@@ -1,4 +1,4 @@
-<%= form_with(model: parking_lot) do |form| %>
+<%= form_for parking_lot do |form| %>
   <% if parking_lot.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(parking_lot.errors.count, "error") %> prohibited this parking_lot from being saved:</h2>
