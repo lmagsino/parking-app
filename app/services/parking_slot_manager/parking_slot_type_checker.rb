@@ -13,7 +13,7 @@ module ParkingSlotManager
       when :medium
         [:medium, :large]
       else
-        [:small]
+        [:small, :medium, :large]
       end
 
     end
