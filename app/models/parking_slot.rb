@@ -22,27 +22,16 @@ class ParkingSlot < ApplicationRecord
 
 
 
-  def self.test entry
-    a = ParkingSlot.pluck(:id, :location).map do |id, location|
-      {
-        id: id,
-        distance: location[entry]
-      }
-    end
-
-    b = a.sort_by do |k|
-      k[:distance]
-    end
-
-    b.first
+  scope :under, -> (parking_lot)do
+    where :parking_lot => parking_lot
   end
 
-  def upload parking_slot_params
-    # parking_lot = ParkingLot.create_or_retrieve_default
-    # parking_type = parking_slot_params[:parking_type]
-    # map = parking_slot_params[:map]
+  scope :with_parking_type, -> (parking_type)do
+    where :parking_type => parking_type
+  end
 
-
+  scope :available, -> do
+    where :status => :available
   end
 
 end
