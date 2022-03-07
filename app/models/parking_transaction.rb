@@ -19,6 +19,10 @@ class ParkingTransaction < ApplicationRecord
     after_transition :on => :complete, :do => :release_parking_slot
   end
 
+  scope :completed, -> do
+    where :status => :completed
+  end
+
 
 
   def parking_lot

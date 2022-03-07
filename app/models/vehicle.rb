@@ -14,4 +14,8 @@ class Vehicle < ApplicationRecord
     self.parking_transactions.order(:start_time).last
   end
 
+  def latest_completed_parking_transaction
+    self.parking_transactions.order(:start_time).completed.last
+  end
+
 end

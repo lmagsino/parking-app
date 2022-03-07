@@ -13,7 +13,6 @@ class VehiclesController < ApplicationController
       vehicle = VehicleManager::VehicleCreator.call vehicle_params
     end
 
-
     parking_transaction =
       ParkingSlotManager::ParkingSlotAssignor.call(
         vehicle,

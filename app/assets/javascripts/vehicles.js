@@ -54,18 +54,18 @@ $(document).ready(function () {
 
   function getTime() {
     var datetime;
-    if ($(this).is(':checked')) {
+    if ($('.js-manual-time').is(':checked')) {
+      datetime = new Date($.now());
+    } else {
       year = $('.js-manual-time #time__1i').val()
       month = $('.js-manual-time #time__2i').val()
       date = $('.js-manual-time #time__3i').val()
       hour = $('.js-manual-time #time__4i').val()
       minute = $('.js-manual-time #time__5i').val()
       datetime = new Date(year, month - 1, date, hour, minute, 0);
-    } else {
-      datetime = new Date($.now());
     }
 
-    return datetime.toLocaleString();
+    return datetime;
   }
 
 });
