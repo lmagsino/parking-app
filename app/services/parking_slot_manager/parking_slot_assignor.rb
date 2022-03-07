@@ -23,6 +23,9 @@ module ParkingSlotManager
       parking_transaction =
         ParkingTransactionCreator.call parking_transaction_params
 
+      parking_transaction.returning =
+        VehicleManager::VehicleReturningChecker.call @vehicle, @transaction_time
+
       parking_transaction.start
       parking_transaction
     end

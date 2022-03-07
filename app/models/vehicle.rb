@@ -10,4 +10,8 @@ class Vehicle < ApplicationRecord
     :large => 2,
   }
 
+  def latest_parking_transaction
+    self.parking_transactions.order(:start_time).last
+  end
+
 end
