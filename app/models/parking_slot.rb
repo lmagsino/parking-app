@@ -34,4 +34,17 @@ class ParkingSlot < ApplicationRecord
     where :status => :available
   end
 
+
+
+  def continuous_rate
+    case self.parking_type.to_sym
+    when :small
+      self.parking_lot.small_parking_rate
+    when :medium
+      self.parking_lot.medium_parking_rate
+    when :large
+      self.parking_lot.large_parking_rate
+    end
+  end
+
 end

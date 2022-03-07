@@ -33,6 +33,25 @@ $(document).ready(function () {
     });
   });
 
+  $('.js-btn-unpark').on('click', function (e) {
+
+    let plateNumber = $('.js-plate-number').val();
+    let dateTime = getTime();
+
+    $.ajax({
+      url: 'unpark',
+      type: 'post',
+      data: { 'plate_number': plateNumber, 'transaction_time': dateTime },
+      dataType: 'json',
+      success: function (response) {
+        alert('Total amount: ' + response.amount)
+      },
+      error: function (response) {
+        alert('Error retrieving the total amount. Please try again.')
+      }
+    });
+  });
+
   function getTime() {
     var datetime;
     if ($(this).is(':checked')) {

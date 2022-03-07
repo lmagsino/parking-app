@@ -1,5 +1,5 @@
 module ParkingSlotManager
-  class ParkingSlotReleaaser < ApplicationService
+  class ParkingSlotReleaser < ApplicationService
 
     def initialize vehicle, transaction_time
       @vehicle = vehicle
@@ -7,14 +7,11 @@ module ParkingSlotManager
     end
 
     def call
-      parking_transaction = ParkingTransaction.find_by @vehicle
+      parking_transaction = @vehicle.latest_parking_transaction
+      parking_transaction.end_time = format_transaction_time
+      parking_transaction.complete
 
-      end_time = format_transaction_time
-      parking_transaction.end_time = end_time
-      parking_transaction.amount =
-        ParkingCalculator.call parking_transaction, end_time
-
-      parking_transaction.save
+      parking_transaction
     end
 
 
@@ -24,7 +21,6 @@ module ParkingSlotManager
     def format_transaction_time
       @transaction_time.to_datetime
     end
-
 
   end
 end

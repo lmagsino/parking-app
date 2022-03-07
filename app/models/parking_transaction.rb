@@ -14,7 +14,9 @@ class ParkingTransaction < ApplicationRecord
       transition :started => :completed
     end
 
+    before_transition :on => :complete, :do => :compute_amount
     after_transition :on => :start, :do => :occupy_parking_slot
+    after_transition :on => :complete, :do => :release_parking_slot
   end
 
 
@@ -32,14 +34,7 @@ class ParkingTransaction < ApplicationRecord
   end
 
   def continuous_rate
-    case self.parking_slot.parking_type.to_sym
-    when :small
-      self.small_parking_rate
-    when :medium
-      self.medium_parking_rate
-    when :large
-      self.large_parking_rate
-    end
+    self.parking_slot.continuous_rate
   end
 
   def small_parking_rate
@@ -64,6 +59,14 @@ class ParkingTransaction < ApplicationRecord
 
   def occupy_parking_slot
     self.parking_slot.occupy_slot
+  end
+
+  def release_parking_slot
+    self.parking_slot.release_slot
+  end
+
+  def compute_amount
+    self.amount = ParkingCalculator.call self
   end
 
 end

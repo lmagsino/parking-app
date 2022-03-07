@@ -19,6 +19,7 @@ class VehiclesController < ApplicationController
     status = :bad_request
 
     if parking_transaction
+      status = :created
       result =
       {
         :location => parking_transaction.parking_slot.location
@@ -34,6 +35,30 @@ class VehiclesController < ApplicationController
   end
 
   def unpark
+    vehicle = Vehicle.find_by :plate_number => params[:plate_number]
+    vehicle.latest_parking_transaction
+
+    parking_transaction =
+      ParkingSlotManager::ParkingSlotReleaser.call(
+        vehicle,
+        params[:transaction_time]
+      )
+
+    status = :bad_request
+
+    if parking_transaction
+      status = :ok
+      result =
+      {
+        :amount => parking_transaction.amount
+      }
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => result, :status => status
+      }
+    end
   end
 
 
