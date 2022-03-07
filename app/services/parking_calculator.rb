@@ -1,11 +1,7 @@
 class ParkingCalculator < ApplicationService
 
-  FLAT_RATE_HOUR = 3
-
-
-
   def initialize parking_transaction, transaction_time
-    @parking_transaction = vehicle
+    @parking_transaction = parking_transaction
     @transaction_time = transaction_time
 
   end

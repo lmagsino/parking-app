@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220307020355) do
+ActiveRecord::Schema.define(version: 20220307021037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20220307020355) do
     t.decimal "large_parking_rate", precision: 15, scale: 4
     t.integer "entry_point"
     t.decimal "whole_day_rate", precision: 15, scale: 4
+    t.integer "flat_rate_duration"
   end
 
   create_table "parking_slots", id: :serial, force: :cascade do |t|

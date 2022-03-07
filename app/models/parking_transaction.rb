@@ -25,7 +25,7 @@ class ParkingTransaction < ApplicationRecord
     self.parking_lot.flat_rate
   end
 
-  def flat_rate
+  def whole_day_rate
     self.parking_lot.whole_day_rate
   end
 
@@ -50,6 +50,10 @@ class ParkingTransaction < ApplicationRecord
 
   def large_parking_rate
     self.parking_lot.large_parking_rate
+  end
+
+  def flat_rate_duration
+    self.parking_lot.flat_rate_duration
   end
 
 end
