@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Adds support for creating state machines for attributes on any Ruby class
-gem 'state_machines'
+gem 'state_machines-activerecord'
 
 gem 'jquery-rails'
 

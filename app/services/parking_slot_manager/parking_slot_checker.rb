@@ -1,14 +1,16 @@
 module ParkingSlotManager
   class ParkingSlotChecker < ApplicationService
 
-    def initialize parking_lot, parking_type, entry_point
-      @parking_lot = parking_lot
-      @parking_type = parking_type
-      @entry_point = entry_point
+    def initialize parking_slot_details
+      @parking_lot = parking_slot_details[:parking_lot]
+      @parking_type = parking_slot_details[:parking_type]
+      @entry_point = parking_slot_details[:entry_point]
     end
 
     def call
       parking_slots = get_available_parking_slots
+      return false unless parking_slots
+
       sorted_parking_slots = get_sorted_parking_slots parking_slots
       sorted_parking_slots.first
     end
@@ -24,6 +26,7 @@ module ParkingSlotManager
           .with_parking_type(@parking_type)
           .available
 
+      return false if parking_slots.empty?
       get_formatted_parking_slots parking_slots
     end
 

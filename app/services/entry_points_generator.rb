@@ -5,7 +5,9 @@ class EntryPointsGenerator < ApplicationService
   end
 
   def call
-    ['A', 'B', 'C']
+    1.upto(@entry_point).map do |point|
+      (point + 96).chr.upcase
+    end
   end
 
 end

@@ -24,10 +24,11 @@ $(document).ready(function () {
       data: { 'entry_point': entryPoint, 'vehicle_type': vehicleType, 'plate_number': plateNumber, 'transaction_time': dateTime },
       dataType: 'json',
       success: function (response) {
-        alert('Successful')
+        console.log(response)
+        alert('You have successfully reserved a slot: ' + response.location)
       },
       error: function (response) {
-        alert('Failed')
+        alert('Sorry, No available parking slot for you')
       }
     });
   });

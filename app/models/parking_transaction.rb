@@ -13,6 +13,8 @@ class ParkingTransaction < ApplicationRecord
     event :complete do
       transition :started => :completed
     end
+
+    after_transition :on => :start, :do => :occupy_parking_slot
   end
 
 
@@ -54,6 +56,14 @@ class ParkingTransaction < ApplicationRecord
 
   def flat_rate_duration
     self.parking_lot.flat_rate_duration
+  end
+
+
+
+  private
+
+  def occupy_parking_slot
+    self.parking_slot.occupy_slot
   end
 
 end
