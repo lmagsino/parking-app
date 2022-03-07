@@ -12,7 +12,7 @@ module VehicleManager
     end
 
     def call
-      end_time = @vehicle.latest_completed_parking_transaction.end_time
+      end_time = @vehicle.latest_completed_parking_transaction.try :end_time
       return false if end_time.nil? || end_time > @transaction_time
 
       transaction_time = Time.parse @transaction_time.to_s
