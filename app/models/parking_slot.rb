@@ -2,6 +2,8 @@ class ParkingSlot < ApplicationRecord
 
   belongs_to :parking_lot
 
+
+
   enum :parking_type => {
     :small => 0,
     :medium => 1,

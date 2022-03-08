@@ -15,14 +15,13 @@ class ParkingSlotsController < ApplicationController
         params[:locations]
       )
 
-    respond_to do |format|
-      if @parking_slot
-        format.html { redirect_to parking_slots_path, notice: "Parking Slot was successfully created." }
-        format.json { render :index, status: :created, location: @parking_slot }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @parking_slot.errors, status: :unprocessable_entity }
-      end
+    if @parking_lot.present?
+      redirect_to(
+        parking_slots_path,
+        :notice => 'Parking Slot was successfully created.'
+      )
+    else
+      render:index
     end
   end
 
@@ -30,9 +29,8 @@ class ParkingSlotsController < ApplicationController
 
   private
 
-    # Only allow a list of trusted parameters through.
     def parking_slot_params
-      params.require(:parking_slot).permit(:parking_lot_id, :parking_type)
+      params.require(:parking_slot).permit :parking_lot_id, :parking_type
     end
 
 end
