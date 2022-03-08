@@ -7,13 +7,11 @@ class VehiclesController < ApplicationController
   end
 
   def park
-    vehicle = VehicleManager::VehicleInitializer.call vehicle_params
-
     parking_transaction =
-      ParkingSlotManager::ParkingSlotAssignor.call(
-        vehicle,
-        params[:transaction_time],
-        parking_slot_params
+      VehicleManager::ParkInitializer.call(
+        vehicle_params,
+        parking_slot_params,
+        params[:transaction_time]
       )
 
     status = :bad_request
@@ -21,9 +19,9 @@ class VehiclesController < ApplicationController
     if parking_transaction
       status = :created
       result =
-      {
-        :location => parking_transaction.parking_slot.location
-      }
+        {
+          :location => parking_transaction.parking_slot.location
+        }
     end
 
     respond_to do |format|
@@ -35,13 +33,9 @@ class VehiclesController < ApplicationController
   end
 
   def unpark
-    vehicle = Vehicle.find_by :plate_number => params[:plate_number]
-    vehicle.latest_parking_transaction
-
     parking_transaction =
-      ParkingSlotManager::ParkingSlotReleaser.call(
-        vehicle,
-        params[:transaction_time]
+      VehicleManager::UnparkInitializer.call(
+        params[:plate_number], params[:transaction_time]
       )
 
     status = :bad_request

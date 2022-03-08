@@ -1,12 +1,12 @@
 module ParkingSlotManager
   class ParkingSlotTypeChecker < ApplicationService
 
-    def initialize vehicle
-      @vehicle = vehicle
+    def initialize vehicle_type
+      @vehicle_type = vehicle_type
     end
 
     def call
-      case @vehicle.vehicle_type.to_sym
+      case @vehicle_type.to_sym
 
       when :large
         [:large]

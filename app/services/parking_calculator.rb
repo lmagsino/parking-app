@@ -7,7 +7,6 @@ class ParkingCalculator < ApplicationService
 
   def initialize parking_transaction
     @parking_transaction = parking_transaction
-
   end
 
   def call
@@ -31,8 +30,8 @@ class ParkingCalculator < ApplicationService
   private
 
   def get_total_hours
-    start_time = Time.parse(@parking_transaction.start_time.to_s)
-    end_time = Time.parse(@parking_transaction.end_time.to_s)
+    start_time = Time.parse @parking_transaction.start_time.to_s
+    end_time = Time.parse @parking_transaction.end_time.to_s
 
     total = (end_time - start_time)/SECONDS_IN_HOUR
     total.ceil
