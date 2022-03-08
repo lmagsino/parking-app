@@ -11,17 +11,35 @@
     </div>
   <% end %>
 
-  <div class = 'field form-group'>
-    <%= form.collection_select :parking_lot_id, ParkingLot.all, :id, :name, :class => 'form-control' %>
+  <div class = 'row form-group'>
+    <div class = 'col-lg-2'>
+      Parking Lot:
+    </div>
+
+    <div class = 'col-lg-4'>
+      <%= form.collection_select :parking_lot_id, ParkingLot.all, :id, :name, {}, :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class = 'field form-group'>
-    <%= form.select :parking_type, options_for_select(ParkingSlot.parking_types.map {|key, val| [key.humanize.capitalize, key]}) %>
+  <div class = 'row form-group'>
+    <div class = 'col-lg-2'>
+      Vehicle Type:
+    </div>
+
+    <div class = 'col-lg-4'>
+      <%= form.select :parking_type, options_for_select(ParkingSlot.parking_types.map {|key, val| [key.humanize.capitalize, key]}), {},:class => 'form-control' %>
+    </div>
   </div>
 
 
-  <div class = 'field form-group'>
-    <%= text_field_tag :locations, '', :class => 'form-control' %>
+  <div class = 'row form-group'>
+    <div class = 'col-lg-2'>
+      Location:
+    </div>
+
+    <div class = 'col-lg-4'>
+      <%= text_field_tag :locations, '', :class => 'form-control' %>
+    </div>
   </div>
 
   <div class = 'field form-group actions'>
