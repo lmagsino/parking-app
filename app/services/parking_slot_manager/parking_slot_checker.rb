@@ -9,7 +9,7 @@ module ParkingSlotManager
 
     def call
       parking_slots = get_available_parking_slots
-      return false unless parking_slots
+      return false if parking_slots.empty?
 
       sorted_parking_slots = get_sorted_parking_slots parking_slots
       sorted_parking_slots.first
@@ -26,11 +26,13 @@ module ParkingSlotManager
           .with_parking_type(@parking_type)
           .available
 
-      return false if parking_slots.empty?
+      return parking_slots if parking_slots.empty?
       get_filtered_parking_slots parking_slots
     end
 
     def get_filtered_parking_slots parking_slots
+      filtered_parking_slots = []
+
       loop do
 
         filtered_parking_slots =
@@ -40,10 +42,12 @@ module ParkingSlotManager
             parking_slot if location.present?
           end.compact
 
-        return filtered_parking_slots unless filtered_parking_slots.empty?
+        break if @entry_point <= 0 || !filtered_parking_slots.empty?
         @entry_point -= 1
 
       end
+
+      filtered_parking_slots
     end
 
     def get_sorted_parking_slots parking_slots
