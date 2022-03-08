@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Parking Slot</h1>
+
+<table class='table table-striped'>
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col">Parking Lot</th>
+      <th scope="col">Parking Type</th>
+      <th scope="col">Entry Point Location</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parking_slots.each do |parking_slot| %>
+      <tr>
+        <td> <%= parking_slot.parking_lot.name %> </td>
+        <td> <%= parking_slot.parking_type %> </td>
+        <td> <%= parking_slot.location %> </td>
+        <td> <%= parking_slot.status %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New parking slot", new_parking_slot_path, class: 'btn btn-secondary' %>

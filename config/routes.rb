@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :parking_lots
   resources :parking_slots
+  resources :parking_transactions
 
   get 'vehicles/manage', :to => 'vehicles#manage'
   post 'vehicles/park', :to => 'vehicles#park'

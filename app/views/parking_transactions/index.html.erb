@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Parking Transaction</h1>
+
+<table class='table table-striped'>
+  <thead class='thead-dark'>
+    <tr>
+      <th scope="col">Vehicle</th>
+      <th scope="col">Parking Type</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Status</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Returning</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parking_transactions.each do |parking_transaction| %>
+      <tr>
+        <td> <%= parking_transaction.vehicle.plate_number %> </td>
+        <td> <%= parking_transaction.parking_slot.parking_type %> </td>
+        <td> <%= parking_transaction.start_time %> </td>
+        <td> <%= parking_transaction.end_time %> </td>
+        <td> <%= parking_transaction.status %> </td>
+        <td> <%= parking_transaction.amount %> </td>
+        <td> <%= parking_transaction.returning %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
