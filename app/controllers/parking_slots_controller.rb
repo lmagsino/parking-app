@@ -28,10 +28,7 @@ class ParkingSlotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def parking_slot_params
-      {
-        :parking_lot_id => params[:parking_lot_id],
-        :parking_type => params[:parking_type]
-      }
+      params.require(:parking_slot).permit(:parking_lot_id, :parking_type)
     end
 
 end
