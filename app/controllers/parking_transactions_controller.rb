@@ -1,7 +1,7 @@
 class ParkingTransactionsController < ApplicationController
 
   def index
-    @parking_transactions = ParkingTransaction.all.order :start_time => :desc
+    @parking_transactions = ParkingTransaction.all.ordered_by_start_time
   end
 
 end

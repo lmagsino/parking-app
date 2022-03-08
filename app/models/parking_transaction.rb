@@ -19,8 +19,14 @@ class ParkingTransaction < ApplicationRecord
     after_transition :on => :complete, :do => :release_parking_slot
   end
 
+
+
   scope :completed, -> do
     where :status => :completed
+  end
+
+  scope :ordered_by_start_time, -> do
+    order :start_time => :desc
   end
 
 
@@ -61,16 +67,16 @@ class ParkingTransaction < ApplicationRecord
 
   private
 
-  def occupy_parking_slot
-    self.parking_slot.occupy_slot
-  end
+    def occupy_parking_slot
+      self.parking_slot.occupy_slot
+    end
 
-  def release_parking_slot
-    self.parking_slot.release_slot
-  end
+    def release_parking_slot
+      self.parking_slot.release_slot
+    end
 
-  def compute_amount
-    self.amount = ParkingCalculator.call self
-  end
+    def compute_amount
+      self.amount = ParkingCalculator.call self
+    end
 
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :parking_lots, :except => [:destroy]
   resources :parking_slots, :only => [:new, :create, :index]
-  resources :parking_transactions
+  resources :parking_transactions, :only => [:index]
 
   get 'vehicles/manage', :to => 'vehicles#manage'
   post 'vehicles/park', :to => 'vehicles#park'
