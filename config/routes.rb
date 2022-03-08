@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :parking_lots
+  resources :parking_lots, :except => [:destroy]
   resources :parking_slots
   resources :parking_transactions
 
