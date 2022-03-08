@@ -10,6 +10,10 @@ class Vehicle < ApplicationRecord
     :large => 2,
   }
 
+  scope :plate_number_is, -> (plate_number)do
+    where 'lower(plate_number) = ?', plate_number.downcase
+  end
+
   def latest_parking_transaction
     self.parking_transactions.order(:start_time).last
   end

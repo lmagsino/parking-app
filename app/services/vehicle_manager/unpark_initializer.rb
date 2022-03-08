@@ -7,7 +7,7 @@ module VehicleManager
     end
 
     def call
-      vehicle = Vehicle.find_by :plate_number => @plate_number
+      vehicle = Vehicle.plate_number_is(@plate_number).first
 
       ParkingSlotManager::ParkingSlotReleaser.call(
         vehicle,

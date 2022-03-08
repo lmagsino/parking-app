@@ -1,5 +1,4 @@
 module VehicleManager
-
   class VehicleInitializer < ApplicationService
 
     def initialize vehicle
@@ -11,11 +10,11 @@ module VehicleManager
 
       if vehicle
         vehicle.vehicle_type = vehicle[:vehicle_type]
-      else
-        vehicle = Vehicle.new @vehicle
+        vehicle.save
+        return vehicle
       end
 
-      vehicle.save
+      vehicle = VehicleCreator.call @vehicle
       vehicle
     end
 
@@ -24,9 +23,8 @@ module VehicleManager
     private
 
     def get_existing
-      Vehicle.find_by :plate_number => @vehicle[:plate_number]
+      Vehicle.plate_number_is(@vehicle[:plate_number]).first
     end
 
   end
-
 end
