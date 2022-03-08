@@ -7,11 +7,7 @@ class VehiclesController < ApplicationController
   end
 
   def park
-    vehicle = Vehicle.find_by :plate_number => vehicle_params[:plate_number]
-
-    if vehicle.nil?
-      vehicle = VehicleManager::VehicleCreator.call vehicle_params
-    end
+    vehicle = VehicleManager::VehicleInitializer.call vehicle_params
 
     parking_transaction =
       ParkingSlotManager::ParkingSlotAssignor.call(

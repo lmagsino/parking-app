@@ -33,8 +33,8 @@ class ParkingTransaction < ApplicationRecord
     self.parking_lot.flat_rate
   end
 
-  def whole_day_rate
-    self.parking_lot.whole_day_rate
+  def overnight_rate
+    self.parking_lot.overnight_rate
   end
 
   def continuous_rate

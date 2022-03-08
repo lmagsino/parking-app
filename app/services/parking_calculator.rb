@@ -19,11 +19,11 @@ class ParkingCalculator < ApplicationService
       return @parking_transaction.flat_rate
     end
 
-    whole_day_duration = get_whole_day_duration total_hours
+    overnight_duration = get_overnight_duration total_hours
     continuous_duration =
-      get_continuous_duration total_hours, whole_day_duration
+      get_continuous_duration total_hours, overnight_duration
 
-    get_total_amount whole_day_duration, continuous_duration
+    get_total_amount overnight_duration, continuous_duration
   end
 
 
@@ -38,13 +38,13 @@ class ParkingCalculator < ApplicationService
     total.ceil
   end
 
-  def get_whole_day_duration total_hours
+  def get_overnight_duration total_hours
     return 0 if total_hours < OVERNIGHT_HOUR
     total_hours / OVERNIGHT_HOUR
   end
 
-  def get_continuous_duration total_hours, whole_day_duration
-    if whole_day_duration == 0
+  def get_continuous_duration total_hours, overnight_duration
+    if overnight_duration == 0
       continuous =
         @parking_transaction.returning ?
           total_hours :
@@ -57,23 +57,23 @@ class ParkingCalculator < ApplicationService
     continuous
   end
 
-  def get_total_whole_day_amount duration
-    duration * @parking_transaction.whole_day_rate
+  def get_total_overnight_amount duration
+    duration * @parking_transaction.overnight_rate
   end
 
   def get_total_continuous_amount duration
     duration * @parking_transaction.continuous_rate
   end
 
-  def get_flat_rate whole_day_duration
-    return 0 if whole_day_duration > 0 || @parking_transaction.returning
+  def get_flat_rate overnight_duration
+    return 0 if overnight_duration > 0 || @parking_transaction.returning
     @parking_transaction.flat_rate
   end
 
-  def get_total_amount whole_day_duration, continuous_duration
-    get_total_whole_day_amount(whole_day_duration) +
+  def get_total_amount overnight_duration, continuous_duration
+    get_total_overnight_amount(overnight_duration) +
       get_total_continuous_amount(continuous_duration) +
-      get_flat_rate(whole_day_duration)
+      get_flat_rate(overnight_duration)
   end
 
 end
