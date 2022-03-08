@@ -1,9 +1,9 @@
 module ParkingSlotManager
   class ParkingSlotChecker < ApplicationService
 
-    def initialize parking_lot, parking_type, entry_point
+    def initialize parking_lot, parking_types, entry_point
       @parking_lot = parking_lot
-      @parking_type = parking_type
+      @parking_types = parking_types
       @entry_point = entry_point
     end
 
@@ -23,7 +23,7 @@ module ParkingSlotManager
       parking_slots =
         ParkingSlot.
           under(@parking_lot)
-          .with_parking_type(@parking_type)
+          .with_parking_type(@parking_types)
           .available
 
       return parking_slots if parking_slots.empty?
