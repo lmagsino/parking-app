@@ -1,5 +1,4 @@
 module VehicleManager
-
   class VehicleCreator < ApplicationService
 
     def initialize vehicle
@@ -11,5 +10,4 @@ module VehicleManager
     end
 
   end
-
 end

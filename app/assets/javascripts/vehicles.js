@@ -24,17 +24,15 @@ $(document).ready(function () {
       data: { 'entry_point': entryPoint, 'vehicle_type': vehicleType, 'plate_number': plateNumber, 'transaction_time': dateTime },
       dataType: 'json',
       success: function (response) {
-        console.log(response)
-        alert('You have successfully reserved a slot: ' + response.location)
+        alert('You have successfully reserved a slot: ' + response.location);
       },
       error: function (response) {
-        alert('Sorry, No available parking slot for you')
+        alert(JSON.parse(response.responseText).message);
       }
     });
   });
 
   $('.js-btn-unpark').on('click', function (e) {
-
     let plateNumber = $('.js-plate-number').val();
     let dateTime = getTime();
 
@@ -44,10 +42,10 @@ $(document).ready(function () {
       data: { 'plate_number': plateNumber, 'transaction_time': dateTime },
       dataType: 'json',
       success: function (response) {
-        alert('Total amount: ' + response.amount)
+        alert('Total amount: ' + response.amount);
       },
       error: function (response) {
-        alert('Error retrieving the total amount. Please try again.')
+        alert(JSON.parse(response.responseText).message);
       }
     });
   });
@@ -57,11 +55,11 @@ $(document).ready(function () {
     if ($('.js-manual-time').is(':checked')) {
       datetime = new Date($.now());
     } else {
-      year = $('.js-manual-time #time__1i').val()
-      month = $('.js-manual-time #time__2i').val()
-      date = $('.js-manual-time #time__3i').val()
-      hour = $('.js-manual-time #time__4i').val()
-      minute = $('.js-manual-time #time__5i').val()
+      year = $('.js-manual-time #time__1i').val();
+      month = $('.js-manual-time #time__2i').val();
+      date = $('.js-manual-time #time__3i').val();
+      hour = $('.js-manual-time #time__4i').val();
+      minute = $('.js-manual-time #time__5i').val();
       datetime = new Date(year, month - 1, date, hour, minute, 0);
     }
 

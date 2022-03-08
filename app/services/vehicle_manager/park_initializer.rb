@@ -19,20 +19,20 @@ module VehicleManager
 
     private
 
-    def get_vehicle
-      VehicleInitializer.call @vehicle
-    end
+      def get_vehicle
+        VehicleInitializer.call @vehicle
+      end
 
-    def get_parking_slot
-      parking_slot =
-        ParkingSlotManager::ParkingSlotTypeChecker.call @vehicle[:vehicle_type]
+      def get_parking_slot
+        parking_type =
+          ParkingSlotManager::ParkingSlotTypeChecker.call @vehicle[:vehicle_type]
 
-      ParkingSlotManager::ParkingSlotChecker.call(
-        @parking_slot[:parking_lot],
-        parking_slot,
-        @parking_slot[:entry_point]
-      )
-    end
+        ParkingSlotManager::ParkingSlotChecker.call(
+          @parking_slot[:parking_lot],
+          parking_type,
+          @parking_slot[:entry_point]
+        )
+      end
 
   end
 end

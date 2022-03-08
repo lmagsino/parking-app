@@ -1,6 +1,5 @@
 class VehiclesController < ApplicationController
 
-
   def manage
     @parking_lot = ParkingLot.first
     @entry_points = EntryPointsGenerator.call @parking_lot.entry_point
@@ -14,22 +13,15 @@ class VehiclesController < ApplicationController
         params[:transaction_time]
       )
 
-    status = :bad_request
-
-    if parking_transaction
+    if parking_transaction.present?
       status = :created
-      result =
-        {
-          :location => parking_transaction.parking_slot.location
-        }
+      result = {:location => parking_transaction.parking_slot.location}
+    else
+      status = :bad_request
+      result = {:message => 'Sorry, No available parking slot for you'}
     end
 
-    respond_to do |format|
-      format.json {
-       render :json => result, :status => status
-      }
-    end
-
+    render :json => result, :status => status
   end
 
   def unpark
@@ -38,23 +30,17 @@ class VehiclesController < ApplicationController
         params[:plate_number], params[:transaction_time]
       )
 
-    status = :bad_request
-
-    if parking_transaction
+    if parking_transaction.present?
       status = :ok
+      result = {:amount => parking_transaction.amount}
+    else
+      status = :bad_request
       result =
-      {
-        :amount => parking_transaction.amount
-      }
+        {:message => 'Error retrieving the total amount. Please try again.'}
     end
 
-    respond_to do |format|
-      format.json {
-        render :json => result, :status => status
-      }
-    end
+    render :json => result, :status => status
   end
-
 
 
 
@@ -68,10 +54,8 @@ class VehiclesController < ApplicationController
     end
 
     def parking_slot_params
-      parking_lot = ParkingLot.first
-
       {
-        :parking_lot => parking_lot,
+        :parking_lot => ParkingLot.first,
         :entry_point => AlphanumericUtility.letter_to_number(params[:entry_point])
       }
     end

@@ -1,5 +1,4 @@
 module VehicleManager
-
   class VehicleReturningChecker < ApplicationService
 
     SECONDS_IN_HOUR = 3600
@@ -23,5 +22,4 @@ module VehicleManager
     end
 
   end
-
 end

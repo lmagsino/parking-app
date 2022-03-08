@@ -20,24 +20,26 @@ module ParkingSlotManager
 
     private
 
-    def create_parking_transaction
-      parking_transaction =
-        ParkingTransactionCreator.call(
-          {
-            :vehicle => @vehicle,
-            :parking_slot => @parking_slot,
-            :start_time => @transaction_time.to_datetime
-          }
-        )
+      def create_parking_transaction
+        parking_transaction =
+          ParkingTransactionCreator.call(
+            {
+              :vehicle => @vehicle,
+              :parking_slot => @parking_slot,
+              :start_time => @transaction_time.to_datetime
+            }
+          )
 
-       update_returning_status parking_transaction
-       parking_transaction
-    end
+        update_returning_status parking_transaction
+        parking_transaction
+      end
 
-    def update_returning_status parking_transaction
-      parking_transaction.returning =
-        VehicleManager::VehicleReturningChecker.call @vehicle, @transaction_time
-    end
+      def update_returning_status parking_transaction
+        parking_transaction.returning =
+          VehicleManager::VehicleReturningChecker.call(
+            @vehicle, @transaction_time
+          )
+      end
 
   end
 end

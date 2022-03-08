@@ -7,7 +7,6 @@ module ParkingSlotManager
 
     def call
       case @vehicle_type.to_sym
-
       when :small
         [:small, :medium, :large]
       when :medium
