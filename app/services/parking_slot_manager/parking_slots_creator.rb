@@ -10,10 +10,8 @@ module ParkingSlotManager
       locations = LocationFormatter.call @locations
 
       locations.each do |location|
-
-        @parking_slot['location'] = JSON.parse location
+        @parking_slot[:location] = JSON.parse location
         ParkingSlotCreator.call @parking_slot
-
       end
     end
 

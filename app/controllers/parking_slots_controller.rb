@@ -7,7 +7,7 @@ class ParkingSlotsController < ApplicationController
   def create
     @parking_slot =
       ParkingSlotManager::ParkingSlotsCreator.call(
-        parking_slot_params.to_h,
+        parking_slot_params,
         params[:locations]
       )
 
@@ -28,7 +28,10 @@ class ParkingSlotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def parking_slot_params
-      params.require(:parking_slot).permit(:parking_lot_id, :parking_type)
+      {
+        :parking_lot_id => params[:parking_lot_id],
+        :parking_type => params[:parking_type]
+      }
     end
 
 end
