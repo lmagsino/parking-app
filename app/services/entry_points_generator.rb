@@ -6,7 +6,7 @@ class EntryPointsGenerator < ApplicationService
 
   def call
     1.upto(@entry_point).map do |point|
-      (point + 96).chr.upcase
+      AlphanumericUtility.number_to_letter point
     end
   end
 

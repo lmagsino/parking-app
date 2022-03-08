@@ -8,18 +8,10 @@ module ParkingSlotManager
 
     def call
       parking_transaction = @vehicle.latest_parking_transaction
-      parking_transaction.end_time = format_transaction_time
+      parking_transaction.end_time = @transaction_time.to_datetime
       parking_transaction.complete
 
       parking_transaction
-    end
-
-
-
-    private
-
-    def format_transaction_time
-      @transaction_time.to_datetime
     end
 
   end

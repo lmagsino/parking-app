@@ -19,7 +19,7 @@
   <div class = 'field form-group'>
     <%= form.label :address, style: "display: block" %>
     <%= form.text_field :address, class: 'form-control' %>
-  </div>
+  </div><%= text_field_tag :locations, '', :class => 'form-control' %>
 
   <div class = 'field form-group'>
     <%= form.label :entry_point, style: "display: block" %>

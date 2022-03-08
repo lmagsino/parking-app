@@ -11,6 +11,7 @@ module ParkingSlotManager
       return false unless @parking_slot
 
       parking_transaction = create_parking_transaction
+
       parking_transaction.start
       parking_transaction
     end
@@ -25,7 +26,7 @@ module ParkingSlotManager
           {
             :vehicle => @vehicle,
             :parking_slot => @parking_slot,
-            :start_time => format_transaction_time
+            :start_time => @transaction_time.to_datetime
           }
         )
 
@@ -37,11 +38,6 @@ module ParkingSlotManager
       parking_transaction.returning =
         VehicleManager::VehicleReturningChecker.call @vehicle, @transaction_time
     end
-
-    def format_transaction_time
-      @transaction_time.to_datetime
-    end
-
 
   end
 end

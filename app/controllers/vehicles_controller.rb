@@ -72,7 +72,7 @@ class VehiclesController < ApplicationController
 
       {
         :parking_lot => parking_lot,
-        :entry_point => params[:entry_point].downcase.ord - 96
+        :entry_point => AlphanumericUtility.letter_to_number(params[:entry_point])
       }
     end
 
