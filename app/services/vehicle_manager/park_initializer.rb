@@ -25,7 +25,9 @@ module VehicleManager
 
       def get_parking_slot
         parking_types =
-          ParkingSlotManager::ParkingSlotTypeChecker.call @vehicle[:vehicle_type]
+          ParkingSlotManager::ParkingSlotTypeChecker.call(
+            @vehicle[:vehicle_type]
+          )
 
         ParkingSlotManager::ParkingSlotChecker.call(
           @parking_slot[:parking_lot],

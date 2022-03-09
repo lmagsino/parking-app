@@ -30,15 +30,12 @@ module ParkingSlotManager
             }
           )
 
-        update_returning_status parking_transaction
+        parking_transaction.returning = is_vehicle_returning
         parking_transaction
       end
 
-      def update_returning_status parking_transaction
-        parking_transaction.returning =
-          VehicleManager::VehicleReturningChecker.call(
-            @vehicle, @transaction_time
-          )
+      def is_vehicle_returning
+        VehicleManager::VehicleReturningChecker.call @vehicle, @transaction_time
       end
 
   end
