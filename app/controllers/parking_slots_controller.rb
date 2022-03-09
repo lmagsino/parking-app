@@ -21,7 +21,7 @@ class ParkingSlotsController < ApplicationController
         :notice => 'Parking Slot was successfully created.'
       )
     else
-      render:index
+      render :index
     end
   end
 

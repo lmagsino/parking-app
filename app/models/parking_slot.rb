@@ -37,20 +37,7 @@ class ParkingSlot < ApplicationRecord
   end
 
   scope :ordered_by_created_at, -> do
-    order :start_time => :desc
-  end
-
-
-
-  def continuous_rate
-    case self.parking_type.to_sym
-    when :small
-      self.parking_lot.small_parking_rate
-    when :medium
-      self.parking_lot.medium_parking_rate
-    when :large
-      self.parking_lot.large_parking_rate
-    end
+    order :created_at => :desc
   end
 
 end
