@@ -8,7 +8,8 @@ module Calculator
 
     def initialize parking_transaction
       @parking_transaction = parking_transaction
-      @parking_lot = @parking_transaction.parking_slot.parking_lot
+      @parking_slot = @parking_transaction.parking_slot
+      @parking_lot = @parking_slot.parking_lot
     end
 
     def call
