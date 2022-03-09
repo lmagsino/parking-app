@@ -36,6 +36,10 @@ class ParkingSlot < ApplicationRecord
     where :status => :available
   end
 
+  scope :ordered_by_created_at, -> do
+    order :start_time => :desc
+  end
+
 
 
   def continuous_rate

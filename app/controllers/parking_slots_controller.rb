@@ -1,7 +1,7 @@
 class ParkingSlotsController < ApplicationController
 
   def index
-    @parking_slots = ParkingSlot.all.order :created_at => :desc
+    @parking_slots = ParkingSlot.all.ordered_by_created_at
   end
 
   def new
