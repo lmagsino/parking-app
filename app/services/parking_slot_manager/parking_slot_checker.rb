@@ -52,7 +52,10 @@ module ParkingSlotManager
 
     def get_sorted_parking_slots parking_slots
       parking_slots.sort_by do |parking_slot|
-        parking_slot[:location][@entry_point - 1]
+        [
+          ParkingSlot.parking_types[parking_slot.parking_type],
+          parking_slot[:location][@entry_point - 1]
+        ]
       end
     end
 

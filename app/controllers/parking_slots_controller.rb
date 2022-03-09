@@ -9,13 +9,13 @@ class ParkingSlotsController < ApplicationController
   end
 
   def create
-    @parking_slot =
+    @parking_slots =
       ParkingSlotManager::ParkingSlotsCreator.call(
         parking_slot_params,
         params[:locations]
       )
 
-    if @parking_lot.present?
+    if @parking_slots.present?
       redirect_to(
         parking_slots_path,
         :notice => 'Parking Slot was successfully created.'

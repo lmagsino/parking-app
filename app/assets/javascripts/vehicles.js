@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on('turbolinks:load', function () {
 
   $('.js-manual-time').prop('checked', true)
   $('.js-manual-time select').attr('disabled', true)
@@ -12,7 +12,6 @@ $(document).ready(function () {
   });
 
   $('.js-btn-park').on('click', function (e) {
-
     let entryPoint = $('.js-entry-point').val();
     let plateNumber = $('.js-plate-number').val();
     let vehicleType = $('.js-vehicle-type').val();
