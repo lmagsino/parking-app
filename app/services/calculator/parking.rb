@@ -50,7 +50,7 @@ module Calculator
         continuous =
           @parking_transaction.returning ?
             total_hours :
-            (total_hours - 3)
+            (total_hours - @parking_lot.flat_rate_duration)
 
       else
         continuous = total_hours % OVERNIGHT_HOUR
