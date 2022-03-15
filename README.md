@@ -7,3 +7,21 @@ Technologies
 * PostgreSQL
 * Javascript
 * JQuery
+
+Project Directory
+* Controllers (app/controllers) - handler of requests from user.
+* Models (app/models) - Business data and all ActiveRecord related codes.
+* Services (app/services) - Business logic.
+* Utilities (app/utilities) - utility codes that can be used across the application.
+* Views (app/views) - Display templates
+
+Software Requirements
+* rails 5.1.7
+* ruby 3.0.3
+* postgresql 14.2
+
+Setup
+* Install the software requirements
+* Create database (parking_development)
+* Run `rails db:migrate` to create database structure
+* Run `rails s` to start the application
