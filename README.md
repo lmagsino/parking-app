@@ -17,7 +17,7 @@ Project Directory
 
 Software Requirements
 * rails 5.1.7
-* ruby 3.0.3
+* ruby 2.6.4
 * postgresql 14.2
 
 Setup
